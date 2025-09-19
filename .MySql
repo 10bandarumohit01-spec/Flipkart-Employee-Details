@@ -1,0 +1,114 @@
+CREATE TABLE employees_details (
+    employee_id INT PRIMARY KEY,
+    first_name VARCHAR(50) NOT NULL,
+    last_name VARCHAR(50) NOT NULL,
+    email VARCHAR(100) UNIQUE NOT NULL,
+    phone VARCHAR(15),
+    hire_date DATE NOT NULL,
+    birth_date DATE,
+    gender ENUM('Male', 'Female', 'Other')
+);
+
+INSERT INTO employees_details VALUES
+(158, 'Mohit', 'Bandaru', 'mohit.bandaru@gamil.com', '9876543210', '2020-06-15', '2005-10-01', 'Male'),
+(257, 'Uday', 'Bandaru', 'uday.bandaru@gamil.com', '8765432109', '2020-03-10', '2005-11-08', 'Male'),
+(178, 'Dhanush', 'Gupta', 'dhanush.gupta@gamil.com', '7654321098', '2020-01-20', '2006-07-14', 'Male'),
+(724, 'Sakshi', 'Patara', 'sakshi.patara@gamil.com', '6543210987', '2020-08-05', '2005-07-30', 'Female'),
+(365, 'Vikram', 'Joshi', 'vikram.joshi@gamil.com', '9432109876', '2020-11-12', '2005-12-25', 'Male');
+
+SELECT * FROM employees_details;
+
+CREATE TABLE departments_types (
+    employee_id INT,
+    department_name VARCHAR(50),
+    location VARCHAR(100)
+);
+
+INSERT INTO departments_types VALUES
+(158, 'Engineering', 'Vijawayada'),
+(257, 'Product Management', 'Hyderabad'),
+(178, 'Marketing', 'Mumbai'),
+(724, 'Operations', 'Delhi'),
+(365, 'Human Resources', 'Bengaluru');
+
+SELECT * FROM departments_types;
+
+CREATE TABLE positions (
+     employee_id INT PRIMARY KEY,
+    title VARCHAR(100) NOT NULL,
+    room_no VARCHAR(50),
+    description TEXT
+);
+
+INSERT INTO positions  VALUES
+(158, 'Software Engineer', 'L3', 'Develops and maintains software applications'),
+(257, 'Senior Software Engineer', 'L4', 'Leads technical projects'),
+(178, 'Product Manager', 'L5', 'Owns product roadmap and strategy'),
+(724, 'Marketing Manager', 'L4', 'Develops marketing campaigns'),
+(365, 'HR Business Partner', 'L4', 'Manages employee relations');
+
+SELECT * FROM positions;
+
+
+CREATE TABLE employee_job_details (
+    employee_id INT PRIMARY KEY,
+    salary DECIMAL(10,2),
+    start_date DATE NOT NULL,
+    end_date DATE
+);
+
+INSERT INTO employee_job_details VALUES
+(158, 1850000.00, '2018-06-15', NULL),
+(257, 1250000.00, '2019-03-10', NULL),
+(178, 2200000.00, '2017-01-20', NULL),
+(724, 1150000.00, '2020-08-05', NULL),
+(365, 2500000.00, '2016-11-12', NULL);
+
+SELECT * FROM employee_job_details;
+
+CREATE TABLE skills (
+    skill_id INT PRIMARY KEY,
+    skill_name VARCHAR(100) NOT NULL,
+    category VARCHAR(50)
+);
+
+INSERT INTO skills VALUES
+(1, 'Java', 'Programming'),
+(7, 'Python', 'Programming'),
+(10, 'SQL', 'Database'),
+(2, 'Product Strategy', 'Product Management'),
+(5, 'Digital Marketing', 'Marketing');
+
+SELECT * FROM skills;
+CREATE TABLE system_access (
+    employee_id INT PRIMARY KEY,
+    system_no INT,
+    System_user_name VARCHAR(50) NOT NULL,
+    access_level ENUM('Basic', 'Standard', 'Admin'),
+    System_leaving_time VARCHAR(50),
+    Shift ENUM('Morning', 'Night')
+);
+
+INSERT INTO system_access VALUES
+(158, 5, 'mohit@5', 'Admin', '6:30 AM to 3:30 PM', 'Morning'),
+(257, 8, 'uday@8', 'Standard', '10 PM to 7 AM', 'Night'),
+(178, 6, 'dhanush@6', 'Standard', '6:30 AM to 3:30 PM', 'Morning'),
+(724, 2, 'sakshi@2', 'Admin', '6:30 AM to 3:30 PM', 'Morning'),
+(365, 6, 'vikram@6', 'Basic', '10 PM to 7 AM', 'Night');
+
+SELECT * FROM system_access;
+
+CREATE TABLE employee_skills (
+    employee_id INT NOT NULL,
+    skill_id INT NOT NULL,
+    proficiency ENUM('Beginner', 'Intermediate', 'Advanced', 'Expert')
+);
+
+INSERT INTO employee_skills VALUES
+(158, 1, 'Advanced'),
+(257, 7, 'Intermediate'),
+(178, 10, 'Intermediate'),
+(724, 2, 'Intermediate'),
+(365, 5, 'Intermediate');
+
+SELECT * FROM employee_skills;
